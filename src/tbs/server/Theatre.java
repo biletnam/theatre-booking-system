@@ -3,19 +3,28 @@ package tbs.server;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Theatre implements Comparable<Theatre>
+public class Theatre implements Comparable<Theatre>, Identifiable
 {
+    private final String ID;
+    private final int NUM_ROWS;
+    private final int FLOOR_AREA; //sq metres
+
     private List<Act> actList = new ArrayList<Act>();
     private int[][] seats;
-    private String ID;
-    private int numRows;
-    private int floorArea; //sq metres
 
+    /**
+     * Creates and returns a theatre object.
+     *
+     * @param ID The unique ID of the theatre.
+     * @param numRows This represents both the number of rows and the
+     *                the number of seats in each row.
+     * @param floorArea The area of theatre in square metres.
+     */
     public Theatre(String ID, int numRows, int floorArea)
     {
         this.ID = ID;
-        this.numRows = numRows;
-        this.floorArea = floorArea;
+        this.NUM_ROWS = numRows;
+        this.FLOOR_AREA = floorArea;
     }
 
     /**
@@ -35,15 +44,14 @@ public class Theatre implements Comparable<Theatre>
     @Override
     public String toString()
     {
-        return "Theatre " + ID + ". It is fully furnished with a " + numRows
-                + " by " + numRows + " seating area, and it has a floor space of "
-                + floorArea + " square metres!";
+        return "Theatre " + ID + ". It is fully furnished with a " + NUM_ROWS
+                + " by " + NUM_ROWS + " seating area, and it has a floor space of "
+                + FLOOR_AREA + " square metres!";
     }
 
     /**
-     * Compares this theatre's ID with another theatre's ID in lexicographical order.
-     * Returns a negative integer, zero, or a positive integer as this theatre's ID
-     * is less than, equal to, or greater than the specified theatre's ID.
+     * Compares this theatre with another theatre using their respective IDs.
+     * Sorted in lexicographical order.
      *
      * @param other the theatre to be compared.
      * @return a negative integer, zero, or a positive integer as this theatre's ID

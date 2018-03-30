@@ -2,18 +2,25 @@ package tbs.server;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 
 public class TBSServerImpl implements TBSServer
 {
     private static final String FILE_NOT_FOUND_ERR_MSG = "Sorry, the client could not find the file.";
     private static final String FILE_FORMAT_ERR_MSG = "Sorry, the format of the input file is incorrect.";
     private static final String DUPLICATE_CODE_ERR_MSG = "Sorry, the input file contains duplicate theatre codes.";
+    private static final String DUPLICATE_ARTIST_NAME_ERR_MSG = "ERROR artist already exists";
+    private static final String EMPTY_ARTIST_NAME_ERR_MSG = "ERROR. The artist name is empty";
+
     private static final String FILE_FOUND_SUCCESS_MSG = "";
     private static final String THEATRE_NAME_MARKER = "THEATRE";
     private static final String THEATRE_CODE_MARKER = ".*";
 
-    private static List<Theatre> theatreList = new ArrayList<Theatre>();
+    private static Identifiables<Theatre> theatres = new Identifiables<>();
+    private static Identifiables<Artist> artists = new Identifiables<>();
 
     /**
      * Request the server to add the theatre details found in the file indicated by the path.
@@ -100,7 +107,7 @@ public class TBSServerImpl implements TBSServer
             }
 
             Theatre newTheatre = new Theatre(currentID, numRows, floorSpace);
-            theatreList.add(newTheatre);
+            theatres.add(newTheatre);
         }
 
         fileScanner.close();
@@ -117,16 +124,7 @@ public class TBSServerImpl implements TBSServer
     @Override
     public List<String> getTheatreIDs()
     {
-        List<String> theatreIDs = new ArrayList<String>();
-
-        for (Theatre currentTheatre : theatreList)
-        {
-            String currentID = currentTheatre.getID();
-            theatreIDs.add(currentID);
-        }
-
-        Collections.sort(theatreIDs);
-        return theatreIDs;
+        return theatres.getIDs();
     }
 
     /**
@@ -139,7 +137,7 @@ public class TBSServerImpl implements TBSServer
     @Override
     public List<String> getArtistIDs()
     {
-        return null;
+        return artists.getIDs();
     }
 
     /**
@@ -152,7 +150,17 @@ public class TBSServerImpl implements TBSServer
     @Override
     public List<String> getArtistNames()
     {
-        return null;
+        List<String> names = new ArrayList<String>();
+
+        //loop through all artists and add each of their names to a list
+        for (Artist artist : artists)
+        {
+            String currentName = artist.getName();
+            names.add(currentName);
+        }
+
+        Collections.sort(names);
+        return names;
     }
 
     /**
@@ -224,7 +232,36 @@ public class TBSServerImpl implements TBSServer
     @Override
     public String addArtist(String name)
     {
-        return null;
+        //error checking
+        if (name.isEmpty())
+        {
+            return EMPTY_ARTIST_NAME_ERR_MSG;
+        }
+        else if (getArtistNames().contains(name))
+        {
+            return DUPLICATE_ARTIST_NAME_ERR_MSG;
+        }
+
+        /*
+        * Gets the previous largest id, and adds one to its value.
+        * Create an artist and add it to the list. The return the id.
+        */
+        String id;
+        List<String> IDs = getArtistIDs();
+        if (IDs.isEmpty())
+        {
+            id = "0";
+        }
+        else
+        {
+            Integer prevID = Integer.parseInt(IDs.get(IDs.size() - 1));
+            id = String.valueOf(prevID + 1);
+        }
+
+        Artist newArtist = new Artist(name, id);
+        artists.add(newArtist);
+
+        return id;
     }
 
     /**
@@ -348,12 +385,19 @@ public class TBSServerImpl implements TBSServer
     {
         List<String> results = new ArrayList<String>();
         System.out.println("\n-------Dump begins here-------");
-        for (int i = 0; i < theatreList.size(); i++)
+        System.out.println("Theares:");
+        for (Theatre theatre : theatres)
         {
-           results.add(theatreList.get(i).toString());
-           System.out.println(theatreList.get(i).toString());
+           results.add(theatre.toString());
+           System.out.println(theatre.toString());
         }
 
+        System.out.println("\nArtists:");
+        for (Artist artist : artists)
+        {
+            results.add(artist.toString());
+            System.out.println(artist.toString());
+        }
         System.out.println("-------Dump ends here-------\n");
         return results;
     }

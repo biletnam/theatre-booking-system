@@ -6,7 +6,8 @@ import tbs.server.Theatre;
 
 import java.util.List;
 
-public class CLI {
+public class CLI
+{
 	public static void main(String[] args)
 	{
 		String path = "theatres1.csv";
@@ -21,12 +22,16 @@ public class CLI {
 		List<String> debugList = server.getTheatreIDs();
 		for (String id: debugList)
 		{
-		//	System.out.println(id);
+			//System.out.println(id);
 		}
 
+		for (int i = 0; i < 10; i++)
+		{
+			String someID = server.addArtist("name" + i);
+		}
 		String artistID1 = server.addArtist("Ewan");
-		//System.out.println("Result from adding artist 'Ewan' is {" + artistID1 + "}");
-		//server.dump(); // Check that the server has been updated
+		System.out.println("Result from adding artist 'Ewan' is {" + artistID1 + "}");
+		server.dump(); // Check that the server has been updated
 		
 		String actID1 = server.addAct("Lecture 3b: Making Objects", artistID1, 50); // this also checks that the artist ID is used properly
 		//System.out.println("Result from adding act to artist 'Ewan' is {" + actID1 + "}");
