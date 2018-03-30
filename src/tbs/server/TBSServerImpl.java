@@ -2,19 +2,18 @@ package tbs.server;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class TBSServerImpl implements TBSServer
 {
     private static final String FILE_NOT_FOUND_ERR_MSG = "Sorry, the client could not find the file.";
     private static final String FILE_FORMAT_ERR_MSG = "Sorry, the format of the input file is incorrect.";
+    private static final String DUPLICATE_CODE_ERR_MSG = "Sorry, the input file contains duplicate theatre codes.";
     private static final String FILE_FOUND_SUCCESS_MSG = "";
-    private static final String THEATRE_FILE_MARKER = "THEATRE";
-    private static final String THEATRE_CODE_MARKER = "T.*";
+    private static final String THEATRE_NAME_MARKER = "THEATRE";
+    private static final String THEATRE_CODE_MARKER = ".*";
 
-    private static ArrayList<Theatre> theatreList = new ArrayList<Theatre>();
+    private static List<Theatre> theatreList = new ArrayList<Theatre>();
 
     /**
      * Request the server to add the theatre details found in the file indicated by the path.
@@ -60,13 +59,17 @@ public class TBSServerImpl implements TBSServer
         that corresponds with the given data. */
         while(fileScanner.hasNext())
         {
-            if(fileScanner.hasNext(THEATRE_FILE_MARKER))
+            if(fileScanner.hasNext(THEATRE_NAME_MARKER))
             {
                 fileScanner.next();
 
                 if(fileScanner.hasNext(THEATRE_CODE_MARKER))
                 {
                     currentID = fileScanner.next();
+                    if (getTheatreIDs().contains(currentID))
+                    {
+                        return DUPLICATE_CODE_ERR_MSG;
+                    }
 
                     if (fileScanner.hasNextInt())
                     {
@@ -114,7 +117,16 @@ public class TBSServerImpl implements TBSServer
     @Override
     public List<String> getTheatreIDs()
     {
-        return null;
+        List<String> theatreIDs = new ArrayList<String>();
+
+        for (Theatre currentTheatre : theatreList)
+        {
+            String currentID = currentTheatre.getID();
+            theatreIDs.add(currentID);
+        }
+
+        Collections.sort(theatreIDs);
+        return theatreIDs;
     }
 
     /**
