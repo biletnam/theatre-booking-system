@@ -2,10 +2,13 @@ package tbs.server;
 
 import java.util.List;
 
-public class Artist implements Identifiable, Comparable<Artist>
+/**
+ * A class representing an artist. Artists can
+ * put on acts, each of which are broken down into
+ * performances.
+ */
+public class Artist extends Identifiable
 {
-    private final String ID;
-
     private String name;
     private List<Act> acts; //The acts that this artist is performing
 
@@ -17,36 +20,17 @@ public class Artist implements Identifiable, Comparable<Artist>
      */
     public Artist(String name, String ID)
     {
-        this.ID = ID;
+        super(ID);
         this.name = name;
     }
 
-    @Override
-    public String getID()
-    {
-        return ID;
-    }
-
+    /**
+     * Returns the name of the artist.
+     * @return The artist's name.
+     */
     public String getName()
     {
         return name;
-    }
-
-    /**
-     * Compares this artist with another artist using their respective IDs.
-     * Sorted in lexicographical order.
-     *
-     * @param other the object to be compared.
-     * @return a negative integer, zero, or a positive integer as this object
-     * is less than, equal to, or greater than the specified object.
-     * @throws NullPointerException if the specified object is null
-     * @throws ClassCastException   if the specified object's type prevents it
-     *                              from being compared to this object.
-     */
-    @Override
-    public int compareTo(Artist other)
-    {
-        return this.getID().compareTo(other.getID());
     }
 
     /**

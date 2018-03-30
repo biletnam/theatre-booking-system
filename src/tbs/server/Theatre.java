@@ -3,9 +3,11 @@ package tbs.server;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Theatre implements Comparable<Theatre>, Identifiable
+/**
+ * A class representing a theatre.
+ */
+public class Theatre extends Identifiable
 {
-    private final String ID;
     private final int NUM_ROWS;
     private final int FLOOR_AREA; //sq metres
 
@@ -22,18 +24,9 @@ public class Theatre implements Comparable<Theatre>, Identifiable
      */
     public Theatre(String ID, int numRows, int floorArea)
     {
-        this.ID = ID;
+        super(ID);
         this.NUM_ROWS = numRows;
         this.FLOOR_AREA = floorArea;
-    }
-
-    /**
-     * Request the theatre's ID.
-     * @return The theatre's ID.
-     */
-    public String getID()
-    {
-        return ID;
     }
 
     /**
@@ -44,25 +37,9 @@ public class Theatre implements Comparable<Theatre>, Identifiable
     @Override
     public String toString()
     {
-        return "Theatre " + ID + ". It is fully furnished with a " + NUM_ROWS
+        return "Theatre " + getID() + ". It is fully furnished with a " + NUM_ROWS
                 + " by " + NUM_ROWS + " seating area, and it has a floor space of "
                 + FLOOR_AREA + " square metres!";
     }
 
-    /**
-     * Compares this theatre with another theatre using their respective IDs.
-     * Sorted in lexicographical order.
-     *
-     * @param other the theatre to be compared.
-     * @return a negative integer, zero, or a positive integer as this theatre's ID
-     * is less than, equal to, or greater than the specified theatre's ID.
-     * @throws NullPointerException if the specified object is null
-     * @throws ClassCastException   if the specified object's type prevents it
-     *                              from being compared to this object.
-     */
-    @Override
-    public int compareTo(Theatre other)
-    {
-        return this.getID().compareTo(other.getID());
-    }
 }
