@@ -9,18 +9,23 @@ import java.util.Scanner;
 
 public class TBSServerImpl implements TBSServer
 {
-    private static final String FILE_NOT_FOUND_ERR_MSG = "Sorry, the client could not find the file.";
-    private static final String FILE_FORMAT_ERR_MSG = "Sorry, the format of the input file is incorrect.";
-    private static final String DUPLICATE_CODE_ERR_MSG = "Sorry, the input file contains duplicate theatre codes.";
-    private static final String DUPLICATE_ARTIST_NAME_ERR_MSG = "ERROR artist already exists";
-    private static final String EMPTY_ARTIST_NAME_ERR_MSG = "ERROR. The artist name is empty";
+    private static final String FILE_NOT_FOUND_ERR_MSG = "ERROR: the client could not find the file.";
+    private static final String FILE_FORMAT_ERR_MSG = "ERROR: The format of the input file is incorrect.";
+    private static final String DUPLICATE_CODE_ERR_MSG = "ERROR: The input file contains duplicate theatre codes.";
+    private static final String DUPLICATE_NAME_ERR_MSG = "ERROR: Artist name already exists";
+    private static final String EMPTY_NAME_ERR_MSG = "ERROR: The input name or title is empty";
+    private static final String MISSING_ACTS_ERR_MSG = "ERROR: No acts found with specified artist ID";
+    private static final String MISSING_PERFORMANCES_ERR_MSG = "ERROR: No performances found with specified artist ID";
+
 
     private static final String FILE_FOUND_SUCCESS_MSG = "";
     private static final String THEATRE_NAME_MARKER = "THEATRE";
     private static final String THEATRE_CODE_MARKER = ".*";
 
-    private static Identifiables<Theatre> theatres = new Identifiables<>();
-    private static Identifiables<Artist> artists = new Identifiables<>();
+    private static Identifiables<Theatre> theatres = new Identifiables<Theatre>();
+    private static Identifiables<Artist> artists = new Identifiables<Artist>();
+    private static Identifiables<Act> acts = new Identifiables<Act>();
+    private static Identifiables<Performance> performances = new Identifiables<Performance>();
 
     /**
      * Request the server to add the theatre details found in the file indicated by the path.
@@ -178,7 +183,23 @@ public class TBSServerImpl implements TBSServer
     @Override
     public List<String> getActIDsForArtist(String artistID)
     {
-        return null;
+        Artist targetArtist = artists.findByID(artistID);
+
+        List<String> actIDs = new ArrayList<String>();
+        if (targetArtist == null)
+        {
+            actIDs.add(MISSING_ACTS_ERR_MSG);
+            return actIDs;
+        }
+
+        actIDs = targetArtist.getActIDs();
+        if (actIDs.isEmpty())
+        {
+            actIDs.add(MISSING_ACTS_ERR_MSG);
+        }
+
+        return actIDs;
+
     }
 
     /**
@@ -196,7 +217,22 @@ public class TBSServerImpl implements TBSServer
     @Override
     public List<String> getPeformanceIDsForAct(String actID)
     {
-        return null;
+        Act targetAct = acts.findByID(actID);
+
+        List<String> performanceIDs = new ArrayList<String>();
+        if (targetAct == null)
+        {
+            performanceIDs.add(MISSING_PERFORMANCES_ERR_MSG);
+            return performanceIDs;
+        }
+
+        performanceIDs = targetAct.getPerformanceIDs();
+        if (performanceIDs.isEmpty())
+        {
+            performanceIDs.add(MISSING_PERFORMANCES_ERR_MSG);
+        }
+
+        return performanceIDs;
     }
 
     /**
@@ -235,11 +271,11 @@ public class TBSServerImpl implements TBSServer
         //error checking
         if (name.isEmpty())
         {
-            return EMPTY_ARTIST_NAME_ERR_MSG;
+            return EMPTY_NAME_ERR_MSG;
         }
         else if (getArtistNames().contains(name))
         {
-            return DUPLICATE_ARTIST_NAME_ERR_MSG;
+            return DUPLICATE_NAME_ERR_MSG;
         }
 
         /*
@@ -247,14 +283,14 @@ public class TBSServerImpl implements TBSServer
         * Create an artist and add it to the list. The return the id.
         */
         String id;
-        List<String> IDs = getArtistIDs();
+        List<Integer> IDs = artists.getNumericIDs();
         if (IDs.isEmpty())
         {
             id = "0";
         }
         else
         {
-            Integer prevID = Integer.parseInt(IDs.get(IDs.size() - 1));
+            Integer prevID = IDs.get(IDs.size() - 1);
             id = String.valueOf(prevID + 1);
         }
 
@@ -282,7 +318,40 @@ public class TBSServerImpl implements TBSServer
     @Override
     public String addAct(String title, String artistID, int minutesDuration)
     {
-        return null;
+        //error checking
+        if (title.isEmpty())
+        {
+            return EMPTY_NAME_ERR_MSG;
+        }
+
+        Artist targetArtist = artists.findByID(artistID);
+
+        /*
+         * Gets the previous largest id, and adds one to its value.
+         * Create an act and add it to the list. Also
+         * The return the id.
+         */
+        String id;
+        List<Integer> IDs = acts.getNumericIDs();
+        if (IDs.isEmpty())
+        {
+            id = "0";
+        }
+        else
+        {
+            Integer prevID = IDs.get(IDs.size() - 1);
+            id = String.valueOf(prevID + 1);
+        }
+
+        Act newAct = new Act(targetArtist, id, title, minutesDuration);
+        acts.add(newAct);
+       /* for (Performance perf : newAct.getPerformances())
+        {
+            performances.add(perf);
+        }*/
+        targetArtist.addAct(newAct);
+
+        return id;
     }
 
     /**
@@ -389,14 +458,28 @@ public class TBSServerImpl implements TBSServer
         for (Theatre theatre : theatres)
         {
            results.add(theatre.toString());
-           System.out.println(theatre.toString());
+           System.out.println(theatre);
         }
 
         System.out.println("\nArtists:");
         for (Artist artist : artists)
         {
             results.add(artist.toString());
-            System.out.println(artist.toString());
+            System.out.println(artist);
+            List<String> actIDs = artist.getActIDs();
+
+            for (String actID : actIDs)
+            {
+                Act act = acts.findByID(actID);
+                System.out.println("\t" + act);
+
+                List<String> perfIDs = act.getPerformanceIDs();
+                for (String perfID : perfIDs)
+                {
+                    Performance perf = performances.findByID(perfID);
+                    System.out.println("\t\t" + perf);
+                }
+            }
         }
         System.out.println("-------Dump ends here-------\n");
         return results;

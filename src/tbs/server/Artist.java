@@ -10,7 +10,7 @@ import java.util.List;
 public class Artist extends Identifiable
 {
     private String name;
-    private List<Act> acts; //The acts that this artist is performing
+    private Identifiables<Act> acts = new Identifiables<Act>(); //The acts that this artist is performing
 
     /**
      * Creates and returns an Artist object.
@@ -41,6 +41,16 @@ public class Artist extends Identifiable
     @Override
     public String toString()
     {
-        return "Artist " + getName() + " " + getID();
+        return "Artist " + getName() + " (ID: " + getID() + ")";
+    }
+
+    public List<String> getActIDs()
+    {
+        return acts.getIDs();
+    }
+
+    public void addAct(Act act)
+    {
+        acts.add(act);
     }
 }

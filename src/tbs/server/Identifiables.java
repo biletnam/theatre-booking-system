@@ -1,10 +1,6 @@
 package tbs.server;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * This class represents a collection of unique items.
@@ -12,10 +8,10 @@ import java.util.List;
  */
 public class Identifiables<E extends Identifiable> implements Iterable<E>
 {
-    private HashSet<E> items = new HashSet<E>();
+    private Set<E> items = new TreeSet<E>(); //using a tree set as it keeps items in order using comparable
 
     /**
-     * Get a list of IDs for each element in the collection.
+     * Get a list of sorted IDs for each element in the collection.
      * @return A List of Strings representing unique IDs.
      */
     public List<String> getIDs()
@@ -32,6 +28,20 @@ public class Identifiables<E extends Identifiable> implements Iterable<E>
         return IDs;
     }
 
+    public List<Integer> getNumericIDs()
+    {
+        List<Integer> numericIDs = new ArrayList<Integer>();
+
+        for (E currentIdentifiable : items)
+        {
+            Integer currentID = Integer.parseInt(currentIdentifiable.getID());
+            numericIDs.add(currentID);
+        }
+
+        Collections.sort(numericIDs);
+        return numericIDs;
+    }
+
     /**
      * Add an element to the collection.
      * @param uniqueObj Some identifiable with a unique ID.
@@ -39,6 +49,20 @@ public class Identifiables<E extends Identifiable> implements Iterable<E>
     public void add(E uniqueObj)
     {
         items.add(uniqueObj);
+    }
+
+    public E findByID(String ID)
+    {
+
+        for (E currentIdentifiable : items)
+        {
+            if(currentIdentifiable.getID().equals(ID))
+            {
+                return currentIdentifiable;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -50,5 +74,10 @@ public class Identifiables<E extends Identifiable> implements Iterable<E>
     public Iterator<E> iterator()
     {
         return items.iterator();
+    }
+
+    public Set<E> toSet()
+    {
+        return items;
     }
 }

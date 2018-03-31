@@ -1,5 +1,8 @@
 package tbs.server;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class representing objects that are unique from each other.
  * All Identifiable objects have an ID that is used to distinguish

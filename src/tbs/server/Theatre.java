@@ -11,7 +11,7 @@ public class Theatre extends Identifiable
     private final int NUM_ROWS;
     private final int FLOOR_AREA; //sq metres
 
-    private List<Act> actList = new ArrayList<Act>();
+    private Identifiables<Act> actList = new Identifiables<Act>();
     private int[][] seats;
 
     /**
