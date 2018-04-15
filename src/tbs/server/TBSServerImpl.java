@@ -9,23 +9,28 @@ import java.util.Scanner;
 
 public class TBSServerImpl implements TBSServer
 {
-    private static final String FILE_NOT_FOUND_ERR_MSG = "ERROR: the client could not find the file.";
-    private static final String FILE_FORMAT_ERR_MSG = "ERROR: The format of the input file is incorrect.";
-    private static final String DUPLICATE_CODE_ERR_MSG = "ERROR: The input file contains duplicate theatre codes.";
-    private static final String DUPLICATE_NAME_ERR_MSG = "ERROR: Artist name already exists";
-    private static final String EMPTY_NAME_ERR_MSG = "ERROR: The input name or title is empty";
-    private static final String MISSING_ACTS_ERR_MSG = "ERROR: No acts found with specified artist ID";
-    private static final String MISSING_PERFORMANCES_ERR_MSG = "ERROR: No performances found with specified artist ID";
+    private final String FILE_NOT_FOUND_ERR_MSG = "ERROR: the client could not find the file.";
+    private final String FILE_FORMAT_ERR_MSG = "ERROR: The format of the input file is incorrect.";
+    private final String DUPLICATE_CODE_ERR_MSG = "ERROR: The input file contains duplicate theatre codes.";
+    private final String DUPLICATE_NAME_ERR_MSG = "ERROR: Artist name already exists.";
+    private final String EMPTY_NAME_ERR_MSG = "ERROR: The input name or title is empty.";
+    private final String MISSING_ACTS_ERR_MSG = "ERROR: No acts found with specified artist ID.";
+    private final String MISSING_PERFORMANCES_ERR_MSG = "ERROR: No performances found with specified artist ID.";
+    private final String SCHEDULE_PERFORMANCE_ERR_MSG = "ERROR: There was an issue with scheduling the performance";
+    private final String ISSUE_TICKET_ERR_MSG = "ERROR: There was a problem with issuing the ticket.";
+    private final String PERFORMANCE_NOT_FOUND_ERR_MSG = "ERROR: No performance found with specified ID.";
+    private final String ACT_NOT_FOUND_ERR_MSG = "ERROR: No act found with specified ID.";
+    private final String ARTIST_NOT_FOUND_ERR_MSG = "ERROR: No artist found with specified ID.";
 
+    private final String FILE_FOUND_SUCCESS_MSG = "";
+    private final String THEATRE_NAME_MARKER = "THEATRE";
+    private final String THEATRE_CODE_MARKER = ".*";
 
-    private static final String FILE_FOUND_SUCCESS_MSG = "";
-    private static final String THEATRE_NAME_MARKER = "THEATRE";
-    private static final String THEATRE_CODE_MARKER = ".*";
+    private Identifiables<Theatre> theatres = new Identifiables<Theatre>();
+    private Identifiables<Artist> artists = new Identifiables<Artist>();
+    private Identifiables<Act> acts = new Identifiables<Act>();
+    private Identifiables<Performance> performances = new Identifiables<Performance>();
 
-    private static Identifiables<Theatre> theatres = new Identifiables<Theatre>();
-    private static Identifiables<Artist> artists = new Identifiables<Artist>();
-    private static Identifiables<Act> acts = new Identifiables<Act>();
-    private static Identifiables<Performance> performances = new Identifiables<Performance>();
 
     /**
      * Request the server to add the theatre details found in the file indicated by the path.
@@ -188,15 +193,11 @@ public class TBSServerImpl implements TBSServer
         List<String> actIDs = new ArrayList<String>();
         if (targetArtist == null)
         {
-            actIDs.add(MISSING_ACTS_ERR_MSG);
+            actIDs.add(ARTIST_NOT_FOUND_ERR_MSG);
             return actIDs;
         }
 
         actIDs = targetArtist.getActIDs();
-        if (actIDs.isEmpty())
-        {
-            actIDs.add(MISSING_ACTS_ERR_MSG);
-        }
 
         return actIDs;
 
@@ -222,16 +223,11 @@ public class TBSServerImpl implements TBSServer
         List<String> performanceIDs = new ArrayList<String>();
         if (targetAct == null)
         {
-            performanceIDs.add(MISSING_PERFORMANCES_ERR_MSG);
+            performanceIDs.add(ACT_NOT_FOUND_ERR_MSG);
             return performanceIDs;
         }
 
         performanceIDs = targetAct.getPerformanceIDs();
-        if (performanceIDs.isEmpty())
-        {
-            performanceIDs.add(MISSING_PERFORMANCES_ERR_MSG);
-        }
-
         return performanceIDs;
     }
 
@@ -250,7 +246,16 @@ public class TBSServerImpl implements TBSServer
     @Override
     public List<String> getTicketIDsForPerformance(String performanceID)
     {
-        return null;
+        Performance targetPerformance = performances.findByID(performanceID);
+        List<String> ticketIDs = new ArrayList<String>();
+
+        if (targetPerformance == null)
+        {
+            ticketIDs.add(PERFORMANCE_NOT_FOUND_ERR_MSG);
+        }
+
+        ticketIDs = targetPerformance.getIssuedTicketIDs();
+        return ticketIDs;
     }
 
     /**
@@ -282,18 +287,7 @@ public class TBSServerImpl implements TBSServer
         * Gets the previous largest id, and adds one to its value.
         * Create an artist and add it to the list. The return the id.
         */
-        String id;
-        List<Integer> IDs = artists.getNumericIDs();
-        if (IDs.isEmpty())
-        {
-            id = "0";
-        }
-        else
-        {
-            Integer prevID = IDs.get(IDs.size() - 1);
-            id = String.valueOf(prevID + 1);
-        }
-
+        String id = artists.generateID(false, null);
         Artist newArtist = new Artist(name, id);
         artists.add(newArtist);
 
@@ -331,24 +325,10 @@ public class TBSServerImpl implements TBSServer
          * Create an act and add it to the list. Also
          * The return the id.
          */
-        String id;
-        List<Integer> IDs = acts.getNumericIDs();
-        if (IDs.isEmpty())
-        {
-            id = "0";
-        }
-        else
-        {
-            Integer prevID = IDs.get(IDs.size() - 1);
-            id = String.valueOf(prevID + 1);
-        }
+        String id = acts.generateID(false, null);
 
         Act newAct = new Act(targetArtist, id, title, minutesDuration);
         acts.add(newAct);
-       /* for (Performance perf : newAct.getPerformances())
-        {
-            performances.add(perf);
-        }*/
         targetArtist.addAct(newAct);
 
         return id;
@@ -365,11 +345,15 @@ public class TBSServerImpl implements TBSServer
      * <p>If there is a problem with the act ID (is not unique), theatre ID (no such theatre exists),
      * or other parameters (wrong format), then the request fails.
      *
-     * @param actID           The ID that identifies the act. It must be unique with respect to acts already managed by the server.
+     * @param actID           The ID that identifies the act. It must be unique with respect to acts already managed by
+     *                        the server.
      * @param theatreID       The ID of the theatre. There must be a theatre with this ID.
-     * @param startTimeStr    The start time for this performance. It must be in the ISO8601 format yyyy-mm-ddThh:mm (zero-padded)
-     * @param premiumPriceStr The price for the premium seats. It must be in the format $d where &lt;d&gt; is the number of dollars.
-     * @param cheapSeatsStr   The price for the cheap seats. It must be in the format $d where &lt;d&gt; is the number of dollars.
+     * @param startTimeStr    The start time for this performance. It must be in the ISO8601 format yyyy-mm-ddThh:mm
+     *                        (zero-padded)
+     * @param premiumPriceStr The price for the premium seats. It must be in the format $d where &lt;d&gt; is the number
+     *                       of dollars.
+     * @param cheapSeatsStr   The price for the cheap seats. It must be in the format $d where &lt;d&gt; is the number
+     *                        of dollars.
      * @return The ID for the new performance if the addition is successful, otherwise a
      * message explaining what went wrong, beginning with ERROR (e.g. "ERROR theatre with theatre ID does not exist").
      * The ID must be unique to all performances but is otherwise implementation dependent.
@@ -377,9 +361,26 @@ public class TBSServerImpl implements TBSServer
      * <p><b>Marks: 2</b>
      */
     @Override
-    public String schedulePerformance(String actID, String theatreID, String startTimeStr, String premiumPriceStr, String cheapSeatsStr)
+    public String schedulePerformance(String actID, String theatreID, String startTimeStr, String premiumPriceStr,
+                                      String cheapSeatsStr)
     {
-        return null;
+        Act targetAct = acts.findByID(actID);
+        Theatre targetTheatre = theatres.findByID(theatreID);
+
+        //error checking
+        if (targetAct == null || targetTheatre == null)
+        {
+            return SCHEDULE_PERFORMANCE_ERR_MSG;
+        }
+
+        Identifiables<Performance> actPerformances = targetAct.getPerformances();
+        String performanceID = actPerformances.generateID(true, actID);
+        Performance newPerformance = new Performance(targetAct, targetTheatre, performanceID, startTimeStr,
+                premiumPriceStr, cheapSeatsStr);
+        performances.add(newPerformance);
+        targetAct.addPerformance(newPerformance);
+
+        return performanceID;
     }
 
     /**
@@ -400,7 +401,31 @@ public class TBSServerImpl implements TBSServer
     @Override
     public String issueTicket(String performanceID, int rowNumber, int seatNumber)
     {
-        return null;
+        Performance targetPerformance = performances.findByID(performanceID);
+
+        if (targetPerformance == null)
+        {
+            return ISSUE_TICKET_ERR_MSG;
+        }
+
+        int numRows = targetPerformance.getTheatre().getNumRows();
+        if (rowNumber <= 0 || seatNumber <= 0 || rowNumber > numRows || seatNumber > numRows)
+        {
+            return ISSUE_TICKET_ERR_MSG;
+        }
+
+        Seat targetSeat = targetPerformance.findSeatByLocation(rowNumber, seatNumber);
+
+        if (targetSeat.ticketIsIssued())
+        {
+            return ISSUE_TICKET_ERR_MSG;
+        }
+        else
+        {
+            targetPerformance.issueTicket(targetSeat);
+        }
+
+        return targetSeat.getTicketID();
     }
 
     /**
@@ -420,7 +445,19 @@ public class TBSServerImpl implements TBSServer
     @Override
     public List<String> seatsAvailable(String performanceID)
     {
-        return null;
+        Performance targetPerformance = performances.findByID(performanceID);
+        List<String> availableSeats = new ArrayList<String>();
+
+        if (targetPerformance == null)
+        {
+            availableSeats.add(PERFORMANCE_NOT_FOUND_ERR_MSG);
+        }
+        else
+        {
+            availableSeats = targetPerformance.getAvailableSeats();
+        }
+
+        return availableSeats;
     }
 
     /**
@@ -439,7 +476,22 @@ public class TBSServerImpl implements TBSServer
     @Override
     public List<String> salesReport(String actID)
     {
-        return null;
+        Act targetAct = acts.findByID(actID);
+        List<String> salesReport = new ArrayList<String>();
+
+        if (targetAct == null)
+        {
+            salesReport.add(ACT_NOT_FOUND_ERR_MSG);
+        }
+        else
+        {
+            Identifiables<Performance> actPerformances = targetAct.getPerformances();
+            for (Performance currentPerformance : actPerformances)
+            {
+                salesReport.add(currentPerformance.generateSalesReport());
+            }
+        }
+        return salesReport;
     }
 
     /**
@@ -454,7 +506,7 @@ public class TBSServerImpl implements TBSServer
     {
         List<String> results = new ArrayList<String>();
         System.out.println("\n-------Dump begins here-------");
-        System.out.println("Theares:");
+        System.out.println("Theatres:");
         for (Theatre theatre : theatres)
         {
            results.add(theatre.toString());

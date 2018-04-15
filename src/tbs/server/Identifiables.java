@@ -28,18 +28,41 @@ public class Identifiables<E extends Identifiable> implements Iterable<E>
         return IDs;
     }
 
-    public List<Integer> getNumericIDs()
+    private List<Integer> getNumericIDs()
     {
         List<Integer> numericIDs = new ArrayList<Integer>();
 
         for (E currentIdentifiable : items)
         {
-            Integer currentID = Integer.parseInt(currentIdentifiable.getID());
-            numericIDs.add(currentID);
+            String IDSections[] = currentIdentifiable.getID().split("-");
+            Integer currentIDFrag = Integer.parseInt(IDSections[IDSections.length - 1]);
+            numericIDs.add(currentIDFrag);
         }
 
         Collections.sort(numericIDs);
         return numericIDs;
+    }
+
+    private List<String> getNumericChildCollectionIDs(String prefix)
+    {
+        List<Integer> numericIDs = new ArrayList<Integer>();
+
+        for (E currentIdentifiable : items)
+        {
+            String IDSections[] = currentIdentifiable.getID().split("-");
+            Integer currentIDFrag = Integer.parseInt(IDSections[IDSections.length - 1]);
+            numericIDs.add(currentIDFrag);
+        }
+
+        Collections.sort(numericIDs);
+        List<String> stringIDs = new ArrayList<String>();
+        for (int IDFrag : numericIDs)
+        {
+            String fullID = prefix + "-" + IDFrag;
+            stringIDs.add(fullID);
+        }
+
+        return stringIDs;
     }
 
     /**
@@ -80,4 +103,42 @@ public class Identifiables<E extends Identifiable> implements Iterable<E>
     {
         return items;
     }
+
+    public String generateID(boolean isChildCollection, String parentPrefix)
+    {
+        String newID;
+        if (!isChildCollection)
+        {
+            List<Integer> IDList = this.getNumericIDs();
+            if (IDList.isEmpty())
+            {
+                newID = "0";
+            }
+            else
+            {
+                int prevID = IDList.get(IDList.size() - 1);
+                newID = String.valueOf(prevID + 1);
+            }
+        }
+        else
+        {
+            List<String> IDList = this.getNumericChildCollectionIDs(parentPrefix);
+
+            if (IDList.isEmpty())
+            {
+                newID = parentPrefix + "-" + "0";
+            }
+            else
+            {
+                String prevID = IDList.get(IDList.size() - 1);
+                String[] IDSections = prevID.split("-");
+                int numericSubID = Integer.parseInt(IDSections[IDSections.length - 1]) + 1;
+                newID = parentPrefix + "-" + String.valueOf(numericSubID);
+            }
+        }
+
+
+        return newID;
+    }
+
 }

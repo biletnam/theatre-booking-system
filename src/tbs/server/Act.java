@@ -27,7 +27,6 @@ public class Act extends Identifiable
         this.ARTIST = artist;
         this.TITLE = title;
         this.DURATION = duration;
-        addPerformance(new Performance(this, ID + "P" + 0));
     }
 
     /**
@@ -47,9 +46,9 @@ public class Act extends Identifiable
         return performances.getIDs();
     }
 
-    public List<Performance> getPerformances()
+    public Identifiables<Performance> getPerformances()
     {
-        return new ArrayList<Performance>(performances.toSet());
+        return performances;
     }
 
     public void addPerformance(Performance performance)

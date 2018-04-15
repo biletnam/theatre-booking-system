@@ -12,7 +12,6 @@ public class Theatre extends Identifiable
     private final int FLOOR_AREA; //sq metres
 
     private Identifiables<Act> actList = new Identifiables<Act>();
-    private int[][] seats;
 
     /**
      * Creates and returns a theatre object.
@@ -40,6 +39,11 @@ public class Theatre extends Identifiable
         return "Theatre " + getID() + ". It is fully furnished with a " + NUM_ROWS
                 + " by " + NUM_ROWS + " seating area, and it has a floor space of "
                 + FLOOR_AREA + " square metres!";
+    }
+
+    public int getNumRows()
+    {
+        return NUM_ROWS;
     }
 
 }
