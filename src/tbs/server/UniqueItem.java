@@ -1,23 +1,20 @@
 package tbs.server;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * A class representing objects that are unique from each other.
- * All Identifiable objects have an ID that is used to distinguish
- * and compare them. An Identifiable object should never be directly
+ * All UniqueItem objects have an ID that is used to distinguish
+ * and compare them. A UniqueItem object should never be directly
  * created, therefore it is abstract.
  */
-public abstract class Identifiable implements Comparable<Identifiable>
+public abstract class UniqueItem implements Comparable<UniqueItem>
 {
     private final String ID;
 
     /**
-     * Creates and returns an identifiable.
+     * Creates and returns a UniqueItem.
      * @param id A unique string ID.
      */
-    public Identifiable(String id)
+    public UniqueItem(String id)
     {
         this.ID = id;
     }
@@ -38,12 +35,12 @@ public abstract class Identifiable implements Comparable<Identifiable>
      * @param obj the reference object with which to compare.
      * @return {@code true} if this object is the same as the obj
      * argument; {@code false} otherwise.
-     * @throws ClassCastException   if the specified object is not an Identifiable
+     * @throws ClassCastException   if the specified object is not a UniqueItem
      */
     @Override
     public boolean equals(Object obj)
     {
-        Identifiable other = (Identifiable) obj;
+        UniqueItem other = (UniqueItem) obj;
         return ID.equals(other.getID());
     }
 
@@ -60,7 +57,7 @@ public abstract class Identifiable implements Comparable<Identifiable>
      *                              from being compared to this object.
      */
     @Override
-    public int compareTo(Identifiable other)
+    public int compareTo(UniqueItem other)
     {
         return getID().compareTo(other.getID());
     }

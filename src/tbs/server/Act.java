@@ -1,20 +1,18 @@
 package tbs.server;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
 
 /**
  * A class representing a part of a show.
  * Each act can have multiple performances.
  */
-public class Act extends Identifiable
+public class Act extends UniqueItem
 {
     private final Artist ARTIST;
     private final String TITLE;
     private final int DURATION; //in minutes
 
-    private Identifiables<Performance> performances = new Identifiables<Performance>();
+    private UniqueItems<Performance> performances = new UniqueItems<Performance>();
 
     /**
      * Create and returns an Act object.
@@ -46,7 +44,7 @@ public class Act extends Identifiable
         return performances.getIDs();
     }
 
-    public Identifiables<Performance> getPerformances()
+    public UniqueItems<Performance> getPerformances()
     {
         return performances;
     }

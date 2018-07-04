@@ -7,10 +7,10 @@ import java.util.List;
  * put on acts, each of which are broken down into
  * performances.
  */
-public class Artist extends Identifiable
+public class Artist extends UniqueItem
 {
     private String name;
-    private Identifiables<Act> acts = new Identifiables<Act>(); //The acts that this artist is performing
+    private UniqueItems<Act> acts = new UniqueItems<Act>(); //The acts that this artist is performing
 
     /**
      * Creates and returns an Artist object.

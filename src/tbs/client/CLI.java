@@ -18,7 +18,8 @@ public class CLI
 	public static void main(String[] args)
 	{
 		String path = "theatres1.csv";
-		if (args.length > 0) {
+		if (args.length > 0)
+		{
 			path = args[0]; // This allows a different file to be specified as an argument, but the default is theatres2.csv
 		}
 		TBSServer server = new TBSServerImpl();
@@ -42,7 +43,7 @@ public class CLI
 
         List<String> ewansActs = server.getActIDsForArtist("7");
 		
-		String actID1 = server.addAct("Lecture 3b: Making Objects", artistID1, 50); // this also checks that the artist ID is used properly
+		String actID1 = server.addAct("Lecture 3b: Making Toast", artistID1, 50); // this also checks that the artist ID is used properly
 		System.out.println("Result from adding act to artist 'Ewan' is {" + actID1 + "}");
 		for (String artistID : server.getArtistIDs())
         {

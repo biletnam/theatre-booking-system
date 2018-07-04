@@ -26,10 +26,10 @@ public class TBSServerImpl implements TBSServer
     private final String THEATRE_NAME_MARKER = "THEATRE";
     private final String THEATRE_CODE_MARKER = ".*";
 
-    private Identifiables<Theatre> theatres = new Identifiables<Theatre>();
-    private Identifiables<Artist> artists = new Identifiables<Artist>();
-    private Identifiables<Act> acts = new Identifiables<Act>();
-    private Identifiables<Performance> performances = new Identifiables<Performance>();
+    private UniqueItems<Theatre> theatres = new UniqueItems<Theatre>();
+    private UniqueItems<Artist> artists = new UniqueItems<Artist>();
+    private UniqueItems<Act> acts = new UniqueItems<Act>();
+    private UniqueItems<Performance> performances = new UniqueItems<Performance>();
 
 
     /**
@@ -373,7 +373,7 @@ public class TBSServerImpl implements TBSServer
             return SCHEDULE_PERFORMANCE_ERR_MSG;
         }
 
-        Identifiables<Performance> actPerformances = targetAct.getPerformances();
+        UniqueItems<Performance> actPerformances = targetAct.getPerformances();
         String performanceID = actPerformances.generateID(true, actID);
         Performance newPerformance = new Performance(targetAct, targetTheatre, performanceID, startTimeStr,
                 premiumPriceStr, cheapSeatsStr);
@@ -485,7 +485,7 @@ public class TBSServerImpl implements TBSServer
         }
         else
         {
-            Identifiables<Performance> actPerformances = targetAct.getPerformances();
+            UniqueItems<Performance> actPerformances = targetAct.getPerformances();
             for (Performance currentPerformance : actPerformances)
             {
                 salesReport.add(currentPerformance.generateSalesReport());

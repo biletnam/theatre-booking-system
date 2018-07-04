@@ -3,7 +3,7 @@ package tbs.server;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Performance extends Identifiable
+public class Performance extends UniqueItem
 {
     private int cheapSeatPrice;
     private int premiuimSeatPrice;
@@ -14,7 +14,7 @@ public class Performance extends Identifiable
     private Act act;
     private Theatre theatre;
 
-    private Identifiables<Seat> seats = new Identifiables<Seat>();
+    private UniqueItems<Seat> seats = new UniqueItems<Seat>();
 
     private Seat[][] seatArray;
 
@@ -68,7 +68,7 @@ public class Performance extends Identifiable
         return Integer.parseInt(dollarPrice.substring(1)); //remove the first character (dollar sign) from string and then convert the rest into an int
     }
 
-    private Identifiables<Seat> getSeats()
+    private UniqueItems<Seat> getSeats()
     {
         return seats;
     }

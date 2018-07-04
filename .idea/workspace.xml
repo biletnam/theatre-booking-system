@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f6cb900a-721f-4b38-85a3-97882aac3e81" name="Default" comment="" />
+    <list default="true" id="f6cb900a-721f-4b38-85a3-97882aac3e81" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tbs/server/ErrorMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/client/CLI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/client/CLI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/client/CLI2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/client/CLI2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/Act.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/Act.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/Artist.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/Artist.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/Identifiable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/Identifiables.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/Performance.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/Performance.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/Seat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/Seat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/TBSServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/TBSServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/TBSServerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/TBSServerImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/Theatre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TheatreBookingSystem/tbs/server/Theatre.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tbs/client/CLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tbs/client/CLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tbs/server/Act.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tbs/server/Act.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tbs/server/Artist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tbs/server/Artist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tbs/server/Identifiable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tbs/server/UniqueItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tbs/server/Identifiables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tbs/server/UniqueItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tbs/server/Performance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tbs/server/Performance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tbs/server/Seat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tbs/server/Seat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tbs/server/TBSServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tbs/server/TBSServerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tbs/server/Theatre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tbs/server/Theatre.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -12,36 +37,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TBSServerImpl.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TBSServerImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tbs/server/TBSServerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6754">
-              <caret line="344" column="58" selection-start-line="344" selection-start-column="58" selection-end-line="344" selection-end-column="58" />
+            <state relative-caret-position="198">
+              <caret line="58" column="35" lean-forward="true" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3950#3951#0" expanded="true" />
-                <element signature="e#3977#3978#0" expanded="true" />
-                <element signature="e#4206#4207#0" expanded="true" />
-                <element signature="e#4233#4234#0" expanded="true" />
-                <element signature="e#4467#4468#0" expanded="true" />
-                <element signature="e#4494#4495#0" expanded="true" />
-                <element signature="e#5167#5168#0" expanded="true" />
-                <element signature="e#5194#5195#0" expanded="true" />
-                <element signature="e#5860#5861#0" expanded="true" />
-                <element signature="e#5887#5888#0" expanded="true" />
-                <element signature="e#6620#6621#0" expanded="true" />
-                <element signature="e#6647#6648#0" expanded="true" />
-                <element signature="e#7301#7302#0" expanded="true" />
-                <element signature="e#7328#7329#0" expanded="true" />
-                <element signature="e#8252#8253#0" expanded="true" />
-                <element signature="e#8279#8280#0" expanded="true" />
-                <element signature="e#11217#11218#0" expanded="true" />
-                <element signature="e#11244#11245#0" expanded="true" />
-                <element signature="e#12061#12062#0" expanded="true" />
-                <element signature="e#12088#12089#0" expanded="true" />
-                <element signature="e#12996#12997#0" expanded="true" />
-                <element signature="e#13023#13024#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ErrorMessages.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/tbs/server/ErrorMessages.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -58,12 +70,8 @@
       <file leaf-file-name="Theatre.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tbs/server/Theatre.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
-              <folding>
-                <element signature="e#575#576#0" expanded="true" />
-                <element signature="e#613#614#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="423">
+              <caret line="37" column="47" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -71,17 +79,47 @@
       <file leaf-file-name="Act.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tbs/server/Act.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+            <state relative-caret-position="290">
+              <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CLI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CLI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tbs/client/CLI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+            <state relative-caret-position="238">
+              <caret line="45" column="74" selection-start-line="45" selection-start-column="74" selection-end-line="45" selection-end-column="74" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CLI2.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/tbs/client/CLI2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-798">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UniqueItem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/tbs/server/UniqueItem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UniqueItems.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/tbs/server/UniqueItems.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="936">
+              <caret line="69" column="39" lean-forward="true" selection-start-line="69" selection-start-column="39" selection-end-line="69" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -92,70 +130,56 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>full</find>
+      <find>An</find>
+      <find>iden</find>
+      <find>identifiable</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/tbs/server/TBSServer.java" />
-        <option value="$PROJECT_DIR$/src/tbs/server/Theatre.java" />
         <option value="$PROJECT_DIR$/src/tbs/server/TBSServerImpl.java" />
+        <option value="$PROJECT_DIR$/src/tbs/server/Theatre.java" />
+        <option value="$PROJECT_DIR$/src/tbs/server/Identifiable.java" />
+        <option value="$PROJECT_DIR$/src/tbs/server/UniqueItem.java" />
+        <option value="$PROJECT_DIR$/src/tbs/server/Identifiables.java" />
+        <option value="$PROJECT_DIR$/src/tbs/server/UniqueItems.java" />
         <option value="$PROJECT_DIR$/src/tbs/client/CLI.java" />
+        <option value="$PROJECT_DIR$/src/tbs/server/ErrorMessages.java" />
       </list>
     </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
     <option name="y" value="20" />
-    <option name="width" value="1346" />
-    <option name="height" value="693" />
+    <option name="width" value="1348" />
+    <option name="height" value="695" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="TheatreBookingSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TheatreBookingSystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TheatreBookingSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TheatreBookingSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TheatreBookingSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TheatreBookingSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="tbs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TheatreBookingSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TheatreBookingSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="tbs" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="TheatreBookingSystem" type="cbb8eebc:String" user="TheatreBookingSystem" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -178,13 +202,64 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="theatre-booking-system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="theatre-booking-system" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="theatre-booking-system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="theatre-booking-system" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="theatre-booking-system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="theatre-booking-system" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="tbs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="theatre-booking-system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="theatre-booking-system" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="tbs" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="theatre-booking-system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="theatre-booking-system" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="tbs" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="TheatreBookingSystem" type="cbb8eebc:String" user="TheatreBookingSystem" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -234,21 +309,27 @@
       </option>
       <patterns />
     </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
-    <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
       <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-    </configuration>
-    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
     </configuration>
     <recent_temporary>
       <list>
@@ -256,31 +337,59 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f6cb900a-721f-4b38-85a3-97882aac3e81" name="Default" comment="" />
+      <created>1530656834501</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1530656834501</updated>
+      <workItem from="1530656846578" duration="3650000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="3650000" />
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1368" height="734" extended-state="6" />
+    <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" />
+      <window_info anchor="right" id="Capture Analysis" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3223684" />
+      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32231405" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3295082" />
+      <window_info id="Capture Tool" />
       <window_info id="Designer" order="0" />
-      <window_info active="true" content_ui="combo" id="Project" order="3" visible="true" weight="0.18080357" />
+      <window_info active="true" content_ui="combo" id="Project" order="3" visible="true" weight="0.18022121" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3292011" />
       <window_info id="Structure" order="4" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="1" />
+      <window_info anchor="right" id="Theme Preview" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -293,32 +402,51 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/tbs/server/TBSServerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5848">
+          <caret line="344" column="58" selection-start-line="344" selection-start-column="58" selection-end-line="344" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/theatres1.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tbs/server/Theatre.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tbs/server/Act.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tbs/client/CLI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tbs/server/TBSServerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7568">
           <caret line="344" column="58" selection-start-line="344" selection-start-column="58" selection-end-line="344" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3950#3951#0" expanded="true" />
-            <element signature="e#3977#3978#0" expanded="true" />
-            <element signature="e#4206#4207#0" expanded="true" />
-            <element signature="e#4233#4234#0" expanded="true" />
-            <element signature="e#4467#4468#0" expanded="true" />
-            <element signature="e#4494#4495#0" expanded="true" />
-            <element signature="e#5167#5168#0" expanded="true" />
-            <element signature="e#5194#5195#0" expanded="true" />
-            <element signature="e#5860#5861#0" expanded="true" />
-            <element signature="e#5887#5888#0" expanded="true" />
-            <element signature="e#6620#6621#0" expanded="true" />
-            <element signature="e#6647#6648#0" expanded="true" />
-            <element signature="e#7301#7302#0" expanded="true" />
-            <element signature="e#7328#7329#0" expanded="true" />
-            <element signature="e#8252#8253#0" expanded="true" />
-            <element signature="e#8279#8280#0" expanded="true" />
-            <element signature="e#11217#11218#0" expanded="true" />
-            <element signature="e#11244#11245#0" expanded="true" />
-            <element signature="e#12061#12062#0" expanded="true" />
-            <element signature="e#12088#12089#0" expanded="true" />
-            <element signature="e#12996#12997#0" expanded="true" />
-            <element signature="e#13023#13024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -334,10 +462,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
-          <folding>
-            <element signature="e#575#576#0" expanded="true" />
-            <element signature="e#613#614#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -361,28 +485,6 @@
           <caret line="344" column="58" selection-start-line="344" selection-start-column="58" selection-end-line="344" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3950#3951#0" expanded="true" />
-            <element signature="e#3977#3978#0" expanded="true" />
-            <element signature="e#4206#4207#0" expanded="true" />
-            <element signature="e#4233#4234#0" expanded="true" />
-            <element signature="e#4467#4468#0" expanded="true" />
-            <element signature="e#4494#4495#0" expanded="true" />
-            <element signature="e#5167#5168#0" expanded="true" />
-            <element signature="e#5194#5195#0" expanded="true" />
-            <element signature="e#5860#5861#0" expanded="true" />
-            <element signature="e#5887#5888#0" expanded="true" />
-            <element signature="e#6620#6621#0" expanded="true" />
-            <element signature="e#6647#6648#0" expanded="true" />
-            <element signature="e#7301#7302#0" expanded="true" />
-            <element signature="e#7328#7329#0" expanded="true" />
-            <element signature="e#8252#8253#0" expanded="true" />
-            <element signature="e#8279#8280#0" expanded="true" />
-            <element signature="e#11217#11218#0" expanded="true" />
-            <element signature="e#11244#11245#0" expanded="true" />
-            <element signature="e#12061#12062#0" expanded="true" />
-            <element signature="e#12088#12089#0" expanded="true" />
-            <element signature="e#12996#12997#0" expanded="true" />
-            <element signature="e#13023#13024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -398,10 +500,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
-          <folding>
-            <element signature="e#575#576#0" expanded="true" />
-            <element signature="e#613#614#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -424,28 +522,6 @@
         <state>
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3950#3951#0" expanded="true" />
-            <element signature="e#3977#3978#0" expanded="true" />
-            <element signature="e#4206#4207#0" expanded="true" />
-            <element signature="e#4233#4234#0" expanded="true" />
-            <element signature="e#4467#4468#0" expanded="true" />
-            <element signature="e#4494#4495#0" expanded="true" />
-            <element signature="e#5167#5168#0" expanded="true" />
-            <element signature="e#5194#5195#0" expanded="true" />
-            <element signature="e#5860#5861#0" expanded="true" />
-            <element signature="e#5887#5888#0" expanded="true" />
-            <element signature="e#6620#6621#0" expanded="true" />
-            <element signature="e#6647#6648#0" expanded="true" />
-            <element signature="e#7301#7302#0" expanded="true" />
-            <element signature="e#7328#7329#0" expanded="true" />
-            <element signature="e#8252#8253#0" expanded="true" />
-            <element signature="e#8279#8280#0" expanded="true" />
-            <element signature="e#11217#11218#0" expanded="true" />
-            <element signature="e#11244#11245#0" expanded="true" />
-            <element signature="e#12061#12062#0" expanded="true" />
-            <element signature="e#12088#12089#0" expanded="true" />
-            <element signature="e#12996#12997#0" expanded="true" />
-            <element signature="e#13023#13024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -461,10 +537,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
           <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
-          <folding>
-            <element signature="e#575#576#0" expanded="true" />
-            <element signature="e#613#614#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -489,35 +561,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tbs/server/TBSServerImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/tbs/server/UniqueItems.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6754">
-          <caret line="344" column="58" selection-start-line="344" selection-start-column="58" selection-end-line="344" selection-end-column="58" />
+        <state relative-caret-position="936">
+          <caret line="69" column="39" lean-forward="true" selection-start-line="69" selection-start-column="39" selection-end-line="69" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tbs/server/UniqueItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tbs/server/Act.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tbs/client/CLI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="45" column="74" selection-start-line="45" selection-start-column="74" selection-end-line="45" selection-end-column="74" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3950#3951#0" expanded="true" />
-            <element signature="e#3977#3978#0" expanded="true" />
-            <element signature="e#4206#4207#0" expanded="true" />
-            <element signature="e#4233#4234#0" expanded="true" />
-            <element signature="e#4467#4468#0" expanded="true" />
-            <element signature="e#4494#4495#0" expanded="true" />
-            <element signature="e#5167#5168#0" expanded="true" />
-            <element signature="e#5194#5195#0" expanded="true" />
-            <element signature="e#5860#5861#0" expanded="true" />
-            <element signature="e#5887#5888#0" expanded="true" />
-            <element signature="e#6620#6621#0" expanded="true" />
-            <element signature="e#6647#6648#0" expanded="true" />
-            <element signature="e#7301#7302#0" expanded="true" />
-            <element signature="e#7328#7329#0" expanded="true" />
-            <element signature="e#8252#8253#0" expanded="true" />
-            <element signature="e#8279#8280#0" expanded="true" />
-            <element signature="e#11217#11218#0" expanded="true" />
-            <element signature="e#11244#11245#0" expanded="true" />
-            <element signature="e#12061#12062#0" expanded="true" />
-            <element signature="e#12088#12089#0" expanded="true" />
-            <element signature="e#12996#12997#0" expanded="true" />
-            <element signature="e#13023#13024#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tbs/client/CLI2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-798">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tbs/server/Theatre.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="37" column="47" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -528,28 +613,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tbs/server/Theatre.java">
+    <entry file="file://$PROJECT_DIR$/src/tbs/server/ErrorMessages.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+        <state relative-caret-position="57">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tbs/server/TBSServerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="58" column="35" lean-forward="true" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
           <folding>
-            <element signature="e#575#576#0" expanded="true" />
-            <element signature="e#613#614#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tbs/server/Act.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tbs/client/CLI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -611,6 +688,18 @@
               <list>
                 <option value="0.2" />
                 <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>10</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>

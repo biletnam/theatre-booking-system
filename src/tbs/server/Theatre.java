@@ -1,17 +1,14 @@
 package tbs.server;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * A class representing a theatre.
  */
-public class Theatre extends Identifiable
+public class Theatre extends UniqueItem
 {
     private final int NUM_ROWS;
     private final int FLOOR_AREA; //sq metres
 
-    private Identifiables<Act> actList = new Identifiables<Act>();
+    private UniqueItems<Act> actList = new UniqueItems<Act>();
 
     /**
      * Creates and returns a theatre object.
@@ -38,7 +35,7 @@ public class Theatre extends Identifiable
     {
         return "Theatre " + getID() + ". It is fully furnished with a " + NUM_ROWS
                 + " by " + NUM_ROWS + " seating area, and it has a floor space of "
-                + FLOOR_AREA + " square metres!";
+                + FLOOR_AREA + " square metres.";
     }
 
     public int getNumRows()

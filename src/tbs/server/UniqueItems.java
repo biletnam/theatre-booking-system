@@ -4,37 +4,19 @@ import java.util.*;
 
 /**
  * This class represents a collection of unique items.
- * @param <E> An object with the Identifiable type.
+ * @param <E> An object with the UniqueItem type.
  */
-public class Identifiables<E extends Identifiable> implements Iterable<E>
+public class UniqueItems<E extends UniqueItem> implements Iterable<E>
 {
-    private Set<E> items = new TreeSet<E>(); //using a tree set as it keeps items in order using comparable
-
-    /**
-     * Get a list of sorted IDs for each element in the collection.
-     * @return A List of Strings representing unique IDs.
-     */
-    public List<String> getIDs()
-    {
-        List<String> IDs = new ArrayList<String>();
-
-        for (E currentIdentifiable : items)
-        {
-            String currentID = currentIdentifiable.getID();
-            IDs.add(currentID);
-        }
-
-        Collections.sort(IDs);
-        return IDs;
-    }
+    private Set<E> items = new TreeSet<E>(); //using a tree set as it keeps items in order when using comparable
 
     private List<Integer> getNumericIDs()
     {
         List<Integer> numericIDs = new ArrayList<Integer>();
 
-        for (E currentIdentifiable : items)
+        for (E currentUniqueItem : items)
         {
-            String IDSections[] = currentIdentifiable.getID().split("-");
+            String IDSections[] = currentUniqueItem.getID().split("-");
             Integer currentIDFrag = Integer.parseInt(IDSections[IDSections.length - 1]);
             numericIDs.add(currentIDFrag);
         }
@@ -47,9 +29,9 @@ public class Identifiables<E extends Identifiable> implements Iterable<E>
     {
         List<Integer> numericIDs = new ArrayList<Integer>();
 
-        for (E currentIdentifiable : items)
+        for (E currentUniqueItem : items)
         {
-            String IDSections[] = currentIdentifiable.getID().split("-");
+            String IDSections[] = currentUniqueItem.getID().split("-");
             Integer currentIDFrag = Integer.parseInt(IDSections[IDSections.length - 1]);
             numericIDs.add(currentIDFrag);
         }
@@ -66,8 +48,26 @@ public class Identifiables<E extends Identifiable> implements Iterable<E>
     }
 
     /**
+     * Get a list of sorted IDs for each element in the collection.
+     * @return A List of Strings representing unique IDs.
+     */
+    public List<String> getIDs()
+    {
+        List<String> IDs = new ArrayList<String>();
+
+        for (E currentUniqueItem : items)
+        {
+            String currentID = currentUniqueItem.getID();
+            IDs.add(currentID);
+        }
+
+        Collections.sort(IDs);
+        return IDs;
+    }
+
+    /**
      * Add an element to the collection.
-     * @param uniqueObj Some identifiable with a unique ID.
+     * @param uniqueObj Some UniqueItem.
      */
     public void add(E uniqueObj)
     {
@@ -77,11 +77,11 @@ public class Identifiables<E extends Identifiable> implements Iterable<E>
     public E findByID(String ID)
     {
 
-        for (E currentIdentifiable : items)
+        for (E currentUniqueItem : items)
         {
-            if(currentIdentifiable.getID().equals(ID))
+            if(currentUniqueItem.getID().equals(ID))
             {
-                return currentIdentifiable;
+                return currentUniqueItem;
             }
         }
 
@@ -89,7 +89,7 @@ public class Identifiables<E extends Identifiable> implements Iterable<E>
     }
 
     /**
-     * Returns an iterator over elements of type Identifiable.
+     * Returns an iterator over elements of type UniqueItem.
      *
      * @return an Iterator.
      */

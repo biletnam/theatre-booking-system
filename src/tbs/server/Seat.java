@@ -1,6 +1,6 @@
 package tbs.server;
 
-public class Seat extends Identifiable
+public class Seat extends UniqueItem
 {
     private boolean ticketIssued = false;
     private int price;
@@ -45,7 +45,7 @@ public class Seat extends Identifiable
      * @param obj the reference object with which to compare.
      * @return {@code true} if this object is the same as the obj
      * argument; {@code false} otherwise.
-     * @throws ClassCastException if the specified object is not an Identifiable
+     * @throws ClassCastException if the specified object is not an UniqueItem
      */
     @Override
     public boolean equals(Object obj)
@@ -66,7 +66,7 @@ public class Seat extends Identifiable
      *                              from being compared to this object.
      */
     @Override
-    public int compareTo(Identifiable other)
+    public int compareTo(UniqueItem other)
     {
         return super.compareTo(other);
     }
