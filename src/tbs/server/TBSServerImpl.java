@@ -9,20 +9,7 @@ import java.util.Scanner;
 
 public class TBSServerImpl implements TBSServer
 {
-    private final String FILE_NOT_FOUND_ERR_MSG = "ERROR: the client could not find the file.";
-    private final String FILE_FORMAT_ERR_MSG = "ERROR: The format of the input file is incorrect.";
-    private final String DUPLICATE_CODE_ERR_MSG = "ERROR: The input file contains duplicate theatre codes.";
-    private final String DUPLICATE_NAME_ERR_MSG = "ERROR: Artist name already exists.";
-    private final String EMPTY_NAME_ERR_MSG = "ERROR: The input name or title is empty.";
-    private final String MISSING_ACTS_ERR_MSG = "ERROR: No acts found with specified artist ID.";
-    private final String MISSING_PERFORMANCES_ERR_MSG = "ERROR: No performances found with specified artist ID.";
-    private final String SCHEDULE_PERFORMANCE_ERR_MSG = "ERROR: There was an issue with scheduling the performance";
-    private final String ISSUE_TICKET_ERR_MSG = "ERROR: There was a problem with issuing the ticket.";
-    private final String PERFORMANCE_NOT_FOUND_ERR_MSG = "ERROR: No performance found with specified ID.";
-    private final String ACT_NOT_FOUND_ERR_MSG = "ERROR: No act found with specified ID.";
-    private final String ARTIST_NOT_FOUND_ERR_MSG = "ERROR: No artist found with specified ID.";
 
-    private final String FILE_FOUND_SUCCESS_MSG = "";
     private final String THEATRE_NAME_MARKER = "THEATRE";
     private final String THEATRE_CODE_MARKER = ".*";
 
@@ -64,7 +51,7 @@ public class TBSServerImpl implements TBSServer
         }
         catch (FileNotFoundException e)
         {
-            return FILE_NOT_FOUND_ERR_MSG;
+            return ResponseMessages.FILE_NOT_FOUND_ERR_MSG.getDescription();
         }
 
 
@@ -85,7 +72,7 @@ public class TBSServerImpl implements TBSServer
                     currentID = fileScanner.next();
                     if (getTheatreIDs().contains(currentID))
                     {
-                        return DUPLICATE_CODE_ERR_MSG;
+                        return ResponseMessages.DUPLICATE_CODE_ERR_MSG.getDescription();
                     }
 
                     if (fileScanner.hasNextInt())
@@ -98,22 +85,22 @@ public class TBSServerImpl implements TBSServer
                         }
                         else
                         {
-                            return FILE_FORMAT_ERR_MSG;
+                            return ResponseMessages.FILE_FORMAT_ERR_MSG.getDescription();
                         }
                     }
                     else
                     {
-                        return FILE_FORMAT_ERR_MSG;
+                        return ResponseMessages.FILE_FORMAT_ERR_MSG.getDescription();
                     }
                 }
                 else
                 {
-                    return FILE_FORMAT_ERR_MSG;
+                    return ResponseMessages.FILE_FORMAT_ERR_MSG.getDescription();
                 }
             }
             else
             {
-                return FILE_FORMAT_ERR_MSG;
+                return ResponseMessages.FILE_FORMAT_ERR_MSG.getDescription();
             }
 
             Theatre newTheatre = new Theatre(currentID, numRows, floorSpace);
@@ -121,7 +108,7 @@ public class TBSServerImpl implements TBSServer
         }
 
         fileScanner.close();
-        return FILE_FOUND_SUCCESS_MSG;
+        return ResponseMessages.FILE_FOUND_SUCCESS_MSG.getDescription();
     }
 
     /**
@@ -193,7 +180,7 @@ public class TBSServerImpl implements TBSServer
         List<String> actIDs = new ArrayList<String>();
         if (targetArtist == null)
         {
-            actIDs.add(ARTIST_NOT_FOUND_ERR_MSG);
+            actIDs.add(ResponseMessages.ARTIST_NOT_FOUND_ERR_MSG.getDescription());
             return actIDs;
         }
 
@@ -223,7 +210,7 @@ public class TBSServerImpl implements TBSServer
         List<String> performanceIDs = new ArrayList<String>();
         if (targetAct == null)
         {
-            performanceIDs.add(ACT_NOT_FOUND_ERR_MSG);
+            performanceIDs.add(ResponseMessages.ACT_NOT_FOUND_ERR_MSG.getDescription());
             return performanceIDs;
         }
 
@@ -251,7 +238,7 @@ public class TBSServerImpl implements TBSServer
 
         if (targetPerformance == null)
         {
-            ticketIDs.add(PERFORMANCE_NOT_FOUND_ERR_MSG);
+            ticketIDs.add(ResponseMessages.PERFORMANCE_NOT_FOUND_ERR_MSG.getDescription());
         }
 
         ticketIDs = targetPerformance.getIssuedTicketIDs();
@@ -276,11 +263,11 @@ public class TBSServerImpl implements TBSServer
         //error checking
         if (name.isEmpty())
         {
-            return EMPTY_NAME_ERR_MSG;
+            return ResponseMessages.EMPTY_NAME_ERR_MSG.getDescription();
         }
         else if (getArtistNames().contains(name))
         {
-            return DUPLICATE_NAME_ERR_MSG;
+            return ResponseMessages.DUPLICATE_NAME_ERR_MSG.getDescription();
         }
 
         /*
@@ -315,7 +302,7 @@ public class TBSServerImpl implements TBSServer
         //error checking
         if (title.isEmpty())
         {
-            return EMPTY_NAME_ERR_MSG;
+            return ResponseMessages.EMPTY_NAME_ERR_MSG.getDescription();
         }
 
         Artist targetArtist = artists.findByID(artistID);
@@ -370,7 +357,7 @@ public class TBSServerImpl implements TBSServer
         //error checking
         if (targetAct == null || targetTheatre == null)
         {
-            return SCHEDULE_PERFORMANCE_ERR_MSG;
+            return ResponseMessages.SCHEDULE_PERFORMANCE_ERR_MSG.getDescription();
         }
 
         UniqueItems<Performance> actPerformances = targetAct.getPerformances();
@@ -405,20 +392,20 @@ public class TBSServerImpl implements TBSServer
 
         if (targetPerformance == null)
         {
-            return ISSUE_TICKET_ERR_MSG;
+            return ResponseMessages.ISSUE_TICKET_ERR_MSG.getDescription();
         }
 
         int numRows = targetPerformance.getTheatre().getNumRows();
         if (rowNumber <= 0 || seatNumber <= 0 || rowNumber > numRows || seatNumber > numRows)
         {
-            return ISSUE_TICKET_ERR_MSG;
+            return ResponseMessages.ISSUE_TICKET_ERR_MSG.getDescription();
         }
 
         Seat targetSeat = targetPerformance.findSeatByLocation(rowNumber, seatNumber);
 
         if (targetSeat.ticketIsIssued())
         {
-            return ISSUE_TICKET_ERR_MSG;
+            return ResponseMessages.ISSUE_TICKET_ERR_MSG.getDescription();
         }
         else
         {
@@ -450,7 +437,7 @@ public class TBSServerImpl implements TBSServer
 
         if (targetPerformance == null)
         {
-            availableSeats.add(PERFORMANCE_NOT_FOUND_ERR_MSG);
+            availableSeats.add(ResponseMessages.PERFORMANCE_NOT_FOUND_ERR_MSG.getDescription());
         }
         else
         {
@@ -481,7 +468,7 @@ public class TBSServerImpl implements TBSServer
 
         if (targetAct == null)
         {
-            salesReport.add(ACT_NOT_FOUND_ERR_MSG);
+            salesReport.add(ResponseMessages.ACT_NOT_FOUND_ERR_MSG.getDescription());
         }
         else
         {
