@@ -28,9 +28,7 @@ public class Act extends UniqueItem
     }
 
     /**
-     * Returns a string representation of the object.
-     *
-     * @return a string representation of the object.
+     * @return A string representation of the object.
      */
     @Override
     public String toString()
@@ -39,16 +37,26 @@ public class Act extends UniqueItem
                 + " - Duration: " + DURATION + " minutes.";
     }
 
+    /**
+     * @return The IDs of all the performances of this act.
+     */
     public List<String> getPerformanceIDs()
     {
         return performances.getIDs();
     }
 
+    /**
+     * @return A collection of the performances of this act.
+     */
     public UniqueItems<Performance> getPerformances()
     {
         return performances;
     }
 
+    /**
+     * Add a performance to this act.
+     * @param performance The performance to be added to this act.
+     */
     public void addPerformance(Performance performance)
     {
         performances.add(performance);

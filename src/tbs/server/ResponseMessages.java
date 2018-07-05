@@ -1,7 +1,7 @@
 package tbs.server;
 
-/*
-This class represents all possible responses from the server.
+/**
+ * This class represents all possible responses from the server.
  */
 public enum ResponseMessages
 {
@@ -26,16 +26,26 @@ public enum ResponseMessages
 
     private final String description;
 
+    /**
+     * Create and return a ResponseMessage
+     * @param description The message that is displayed to the user.
+     */
     ResponseMessages(String description)
     {
         this.description = description;
     }
 
+    /**
+     * @return the ResponseMessage's description.
+     */
     public String getDescription()
     {
         return description;
     }
 
+    /**
+     * @return a string representation of the object.
+     */
     @Override
     public String toString()
     {

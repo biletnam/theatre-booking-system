@@ -3,6 +3,9 @@ package tbs.server;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class representing a performance. Performances make up acts, which are performed by artists.
+ */
 public class Performance extends UniqueItem
 {
     private int cheapSeatPrice;
@@ -21,8 +24,17 @@ public class Performance extends UniqueItem
     private List<String> issuedTicketIDs = new ArrayList<String>();
 
 
-    public Performance(Act act, Theatre theatre, String ID, String startTime, String premiumPrice,
-                       String cheapPrice)
+    /**
+     * Creates and returns a performance object.
+     *
+     * @param act The act that this performance is part of.
+     * @param theatre The theatre this this performance will performed at.
+     * @param ID The unique identifier of this performance.
+     * @param startTime The time that this performance will begin.
+     * @param premiumPrice The cost of attending this performance in an expensive seat.
+     * @param cheapPrice The cost of attending this performance in a basic seat.
+     */
+    public Performance(Act act, Theatre theatre, String ID, String startTime, String premiumPrice, String cheapPrice)
     {
         super(ID);
         this.act = act;
@@ -53,9 +65,7 @@ public class Performance extends UniqueItem
         }
     }
     /**
-     * Returns a string representation of the object.
-     *
-     * @return a string representation of the object.
+     * @return A string representation of the object.
      */
     @Override
     public String toString()
@@ -63,16 +73,28 @@ public class Performance extends UniqueItem
         return "Performance " + getID() + " of " + act + ".";
     }
 
+    /**
+     * Converts a money value from a string to an Integer
+     * @param dollarPrice The value to be converted.
+     * @return The converted integer value.
+     */
     private Integer priceToInteger(String dollarPrice)
     {
-        return Integer.parseInt(dollarPrice.substring(1)); //remove the first character (dollar sign) from string and then convert the rest into an int
+        //removes the first character (dollar sign) from the string and then convert the rest into an Integer
+        return Integer.parseInt(dollarPrice.substring(1));
     }
 
+    /**
+     * @return A collection of seats for this performance.
+     */
     private UniqueItems<Seat> getSeats()
     {
         return seats;
     }
 
+    /**
+     * @return A list of seats (represented as Strings) that are available to be purchased.
+     */
     public List<String> getAvailableSeats()
     {
         List<String> availableSeats = new ArrayList<String>();
@@ -89,16 +111,29 @@ public class Performance extends UniqueItem
         return availableSeats;
     }
 
+    /**
+     * @return The theatre in which this performance will take place.
+     */
     public Theatre getTheatre()
     {
         return theatre;
     }
 
+    /**
+     * Returns the seat from the given location.
+     * @param rowNumber The row the seat is located in.
+     * @param seatNumber The column the seat is located in, or how far down the row the seat is.
+     * @return A seat object at the given location.
+     */
     public Seat findSeatByLocation(int rowNumber, int seatNumber)
     {
         return seatArray[rowNumber - 1][seatNumber - 1];
     }
 
+    /**
+     * Issues a ticket for a seat, and record appropiate stats.
+     * @param seat The seat that has been purchased.
+     */
     public void issueTicket(Seat seat)
     {
         seat.issueTicket();
@@ -107,12 +142,19 @@ public class Performance extends UniqueItem
         issuedTicketIDs.add(seat.getTicketID());
     }
 
+    /**
+     * Return statistics regarding the performance and sales.
+     * @return
+     */
     public String generateSalesReport()
     {
         String performanceReport = "" + getID() + "\t" + startTime + "\t" + numTicketsSold + "\t" + "$" + totalSalesReceipt;
         return performanceReport;
     }
 
+    /**
+     * @return A collection of the issued ticket IDs.
+     */
     public List<String> getIssuedTicketIDs()
     {
         return issuedTicketIDs;

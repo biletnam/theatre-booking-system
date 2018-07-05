@@ -1,5 +1,8 @@
 package tbs.server;
 
+/**
+ * This class represents a seat. Seats are part of theatres, and their location is determined by a row and seat number.
+ */
 public class Seat extends UniqueItem
 {
     private boolean ticketIssued = false;
@@ -71,26 +74,41 @@ public class Seat extends UniqueItem
         return super.compareTo(other);
     }
 
+    /**
+     * Records the purchase of the ticket for this seat.
+     */
     public void issueTicket()
     {
         ticketIssued = true;
     }
 
+    /**
+     * @return True or false, checks if the ticket for this seat has been issued.
+     */
     public boolean ticketIsIssued()
     {
         return ticketIssued;
     }
 
+    /**
+     * @return The row number of this seat.
+     */
     public int getRowNumber()
     {
         return rowNumber;
     }
 
+    /**
+     * @return The seat number of this seat. The seat number is how far down the row a seat is in.
+     */
     public int getSeatNumber()
     {
         return seatNumber;
     }
 
+    /**
+     * @return The price of the ticket for this seat.
+     */
     public int getPrice()
     {
         return price;

@@ -10,6 +10,11 @@ public class UniqueItems<E extends UniqueItem> implements Iterable<E>
 {
     private Set<E> items = new TreeSet<E>(); //using a tree set as it keeps items in order when using comparable
 
+    /**
+     * Numeric IDs are the segment (the last segment) of IDs made of digits. This method gets all the numeric
+     * IDs.
+     * @return A list of the numeric part of IDs.
+     */
     private List<Integer> getNumericIDs()
     {
         List<Integer> numericIDs = new ArrayList<Integer>();
@@ -25,6 +30,16 @@ public class UniqueItems<E extends UniqueItem> implements Iterable<E>
         return numericIDs;
     }
 
+
+    /**
+     * Numeric IDs are the segment (the last segment) of IDs made of digits. Child collections are sub-groupings of a
+     * particular type of group. For example, artists store a reference to acts they put on. A group of artists
+     * may be a collection itself and their acts are a sub-grouping or child collection. This method returns all the
+     * numeric IDs in a given child collection.
+     *
+     * @param prefix The prefix to the ID that determines the child collection.
+     * @return
+     */
     private List<String> getNumericChildCollectionIDs(String prefix)
     {
         List<Integer> numericIDs = new ArrayList<Integer>();
@@ -74,6 +89,12 @@ public class UniqueItems<E extends UniqueItem> implements Iterable<E>
         items.add(uniqueObj);
     }
 
+    /**
+     * Finds a particular object by its ID.
+     *
+     * @param ID The ID used to search for the object.
+     * @return The object associated with the ID.
+     */
     public E findByID(String ID)
     {
 
@@ -89,9 +110,7 @@ public class UniqueItems<E extends UniqueItem> implements Iterable<E>
     }
 
     /**
-     * Returns an iterator over elements of type UniqueItem.
-     *
-     * @return an Iterator.
+     * @return An iterator over elements of type UniqueItem.
      */
     @Override
     public Iterator<E> iterator()
@@ -99,11 +118,21 @@ public class UniqueItems<E extends UniqueItem> implements Iterable<E>
         return items.iterator();
     }
 
+    /**
+     * @return A set representation of this collection.
+     */
     public Set<E> toSet()
     {
         return items;
     }
 
+    /**
+     * Generates a new ID.
+     *
+     * @param isChildCollection A boolean representing whether or not this ID is part of a child collection.
+     * @param parentPrefix The prefix to the ID. Ignored if isChildCollection is set to false.
+     * @return
+     */
     public String generateID(boolean isChildCollection, String parentPrefix)
     {
         String newID;

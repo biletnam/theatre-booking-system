@@ -1,12 +1,19 @@
 package tbs.server;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * A server implementation that keeps track of threatre data, including, performers, acts, perforamnces, and tickets.
+ * Implements TBSServer.
+ */
 public class TBSServerImpl implements TBSServer
 {
 
@@ -18,6 +25,20 @@ public class TBSServerImpl implements TBSServer
     private UniqueItems<Act> acts = new UniqueItems<Act>();
     private UniqueItems<Performance> performances = new UniqueItems<Performance>();
 
+    /**
+     * An exception that occurs when reading a file.
+     */
+    private static class TheatreParsingException extends RuntimeException
+    {
+        /**
+         * Create and returns a TheatreParsingException .
+         * @param response The error message of the exception.
+         */
+        public TheatreParsingException(String response)
+        {
+            super(response);
+        }
+    }
 
     /**
      * Request the server to add the theatre details found in the file indicated by the path.
@@ -41,74 +62,97 @@ public class TBSServerImpl implements TBSServer
      */
     public String initialise(String path)
     {
-        //IO
-        File theatreFile = new File(path);
-        Scanner fileScanner = null;
-
         try
         {
-            fileScanner = new Scanner(theatreFile);
+            //Get every line from the given file
+            Path filePath = Paths.get(path);
+            List<String> lines = Files.readAllLines(filePath, Charset.defaultCharset());
+
+            //Loop through every line, check if the format is correct and that each code is unique to the server.
+            //If all checks are successful, add it to the server.
+            for (String line : lines)
+            {
+                Theatre newTheatre = parseLineToTheater(line);
+                checkUniqueness(newTheatre);
+                theatres.add(newTheatre);
+            }
+
         }
-        catch (FileNotFoundException e)
+        catch (IOException e)
         {
             return ResponseMessages.FILE_NOT_FOUND_ERR_MSG.getDescription();
         }
-
-
-        String currentID = null;
-        int numRows;
-        int floorSpace;
-
-        /*Loop through input file tokens, checks if format is correct and if so create a theatre object
-        that corresponds with the given data. */
-        while(fileScanner.hasNext())
+        catch(TheatreParsingException e)
         {
-            if(fileScanner.hasNext(THEATRE_NAME_MARKER))
-            {
-                fileScanner.next();
-
-                if(fileScanner.hasNext(THEATRE_CODE_MARKER))
-                {
-                    currentID = fileScanner.next();
-                    if (getTheatreIDs().contains(currentID))
-                    {
-                        return ResponseMessages.DUPLICATE_CODE_ERR_MSG.getDescription();
-                    }
-
-                    if (fileScanner.hasNextInt())
-                    {
-                        numRows = fileScanner.nextInt();
-
-                        if (fileScanner.hasNextInt())
-                        {
-                            floorSpace = fileScanner.nextInt();
-                        }
-                        else
-                        {
-                            return ResponseMessages.FILE_FORMAT_ERR_MSG.getDescription();
-                        }
-                    }
-                    else
-                    {
-                        return ResponseMessages.FILE_FORMAT_ERR_MSG.getDescription();
-                    }
-                }
-                else
-                {
-                    return ResponseMessages.FILE_FORMAT_ERR_MSG.getDescription();
-                }
-            }
-            else
-            {
-                return ResponseMessages.FILE_FORMAT_ERR_MSG.getDescription();
-            }
-
-            Theatre newTheatre = new Theatre(currentID, numRows, floorSpace);
-            theatres.add(newTheatre);
+            return e.getMessage();
         }
 
-        fileScanner.close();
+        //If the try block terminates peacefully,
+        //return a success message
         return ResponseMessages.FILE_FOUND_SUCCESS_MSG.getDescription();
+    }
+
+    /**
+     * Check if a given line is of the valid format.
+     *
+     * The file format is, each line consists of:
+     * "THEATRE" "\t" theatre ID "\t" seating dimension "\t" floor area
+     *
+     * @param inputLine the given line on which the function checks for format validity
+     * @return a Theatre objectm with floor and seating information.
+     * @throws TheatreParsingException
+     */
+    private Theatre parseLineToTheater(String inputLine) throws TheatreParsingException
+    {
+        Scanner lineScanner = new Scanner(inputLine);
+        try
+        {
+            if (!lineScanner.hasNext(THEATRE_NAME_MARKER))  //Check for theatre marker
+            {
+                throw new TheatreParsingException(ResponseMessages.FILE_FORMAT_ERR_MSG.getDescription());
+            }
+
+            lineScanner.next();
+
+            if (!lineScanner.hasNext(THEATRE_CODE_MARKER)) //Check for code marker
+            {
+                throw new TheatreParsingException(ResponseMessages.FILE_FORMAT_ERR_MSG.getDescription());
+            }
+
+            String code = lineScanner.next();
+
+            if (!lineScanner.hasNextInt()) //Check for seating dimension
+            {
+                throw new TheatreParsingException(ResponseMessages.FILE_FORMAT_ERR_MSG.getDescription());
+            }
+
+            int seatingDimension = lineScanner.nextInt();
+
+            if (!lineScanner.hasNextInt()) //Check for floor area
+            {
+                throw new TheatreParsingException(ResponseMessages.FILE_FORMAT_ERR_MSG.getDescription());
+            }
+
+            int floorSpace = lineScanner.nextInt();
+            return new Theatre(code, seatingDimension, floorSpace);
+        }
+        finally
+        {
+            lineScanner.close();
+        }
+    }
+
+    /**
+     * Check if a given theatre has a code that already exists within the server.
+     * @param currentTheatre The given theatre.
+     * @throws TheatreParsingException
+     */
+    private void checkUniqueness(Theatre currentTheatre) throws TheatreParsingException
+    {
+        if (getTheatreIDs().contains(currentTheatre.getID()))
+        {
+            throw new TheatreParsingException(ResponseMessages.DUPLICATE_CODE_ERR_MSG.getDescription());
+        }
     }
 
     /**
@@ -203,7 +247,7 @@ public class TBSServerImpl implements TBSServer
      * <p><b>Marks: 1</b>
      */
     @Override
-    public List<String> getPeformanceIDsForAct(String actID)
+    public List<String> getPerformanceIDsForAct(String actID)
     {
         Act targetAct = acts.findByID(actID);
 

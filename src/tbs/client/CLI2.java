@@ -6,15 +6,18 @@ import tbs.server.TBSServer;
 import tbs.server.TBSServerImpl;
 
 /**
+ * This class was supplied as part of the assignment.
  * This assumes an implementation that does all the happy path functionality correctly.
  */
-public class CLI2 {
+public class CLI2
+{
 	public static void main(String[] args) {
 		simple();
 		grouped();
 	}
 	
-	private static void simple() {
+	private static void simple()
+    {
 		System.out.println("SIMPLE This sequence adds 1 of everything");
 		String path = "theatres1.csv";
 		TBSServer server = new TBSServerImpl();
@@ -49,7 +52,8 @@ public class CLI2 {
 		System.out.println("---------------- completed ----------------------");
 	}
 	
-	private static void grouped() {
+	private static void grouped()
+    {
 		System.out.println("GROUPED This sequence adds multiple of everything but grouped together");
 		String path = "theatres1.csv";
 		TBSServer server = new TBSServerImpl();
@@ -86,7 +90,8 @@ public class CLI2 {
 		
 	}
 	
-	private static String addArtist(TBSServer server, String artistName) {
+	private static String addArtist(TBSServer server, String artistName)
+    {
 		String artistID = server.addArtist(artistName);
 		System.out.println("Added artist '" + artistName + "' got artist ID " + artistID);
 		List<String> actualArtistIDs = server.getArtistIDs();
@@ -99,20 +104,22 @@ public class CLI2 {
 		return artistID;
 	}
 	
-	private static String addAct(TBSServer server, String artistID, String actTitle, int duration) {
+	private static String addAct(TBSServer server, String artistID, String actTitle, int duration)
+    {
 		String actID = server.addAct(actTitle,  artistID, duration);
 		System.out.println("Added act title '" + actTitle + "' duration " + duration + " for artist " + artistID + " got act ID " + actID);
 		System.out.println("Result from getActIDs() for artist " + artistID + " is " + server.getActIDsForArtist(artistID));
 		// Should be no performances for new act
-		System.out.println("Result from getPeformanceIDsForAct() for artist " + artistID + " is " + server.getPeformanceIDsForAct(actID) + " (should be [])");
+		System.out.println("Result from getPerformanceIDsForAct() for artist " + artistID + " is " + server.getPerformanceIDsForAct(actID) + " (should be [])");
 		System.out.println();
 		return actID;
 	}
 	
-	private static String schedulePerformance(TBSServer server, String actID, String theatreID, String startTime, int numSeats, String premium, String cheap) {
+	private static String schedulePerformance(TBSServer server, String actID, String theatreID, String startTime, int numSeats, String premium, String cheap)
+    {
 		String perfID = server.schedulePerformance(actID, theatreID, startTime, premium, cheap);
 		System.out.println("Added performance at " + startTime + ", premium=" + premium + ", cheap=" + cheap + " to act " + actID + " got performance ID " + perfID);
-		System.out.println("Result from getPeformanceIDsForAct() for act " + actID + " is " + server.getPeformanceIDsForAct(actID));
+		System.out.println("Result from getPerformanceIDsForAct() for act " + actID + " is " + server.getPerformanceIDsForAct(actID));
 		// Should be no tickets
 		System.out.println("Result from getTicketIDsForPerformance() for " + perfID + " is " + server.getTicketIDsForPerformance(perfID) + " (should be [])");
 
@@ -124,7 +131,8 @@ public class CLI2 {
 		return perfID;
 	}
 	
-	private static String issueTicket(TBSServer server, String perfID, int row, int seat, int seatsAvailableAfter) {
+	private static String issueTicket(TBSServer server, String perfID, int row, int seat, int seatsAvailableAfter)
+    {
 		// Tickets
 		String ticketID = server.issueTicket(perfID, row, seat);
 		System.out.println("Issued ticket for performance " + perfID + " row=" + row + " seat=" + seat + " got ticket ID " + ticketID);
@@ -136,7 +144,8 @@ public class CLI2 {
 		System.out.println();
 		return ticketID;
 	}
-	private static void checkSeatNotAvailable(List<String> seatsAvailable, int row, int seat) {
+	private static void checkSeatNotAvailable(List<String> seatsAvailable, int row, int seat)
+    {
 		String record = row + "\t" + seat;
 		for(String available: seatsAvailable) {
 			if (record.equals(available)) {
@@ -144,7 +153,8 @@ public class CLI2 {
 			}
 		}
 	}
-	private static void checkSalesReport(List<String> salesReport, String perfID, String startTime, int ticketsSold, String receipts) {
+	private static void checkSalesReport(List<String> salesReport, String perfID, String startTime, int ticketsSold, String receipts)
+    {
 		// Find the relevant report. Not the most elegant...
 		String relevantReport = null;
 		for(String perfReport: salesReport) {
@@ -154,13 +164,15 @@ public class CLI2 {
 				break;
 			}
 		}
-		if (relevantReport == null) {
+		if (relevantReport == null)
+		{
 			System.out.println("\tFAILURE cannot find report for " + perfID);
 			return;
 		}
 		checkSalesReport(relevantReport, perfID, startTime, ticketsSold, receipts);
 	}	
-	private static void checkSalesReport(String report, String perfID, String startTime, int ticketsSold, String receipts) {
+	private static void checkSalesReport(String report, String perfID, String startTime, int ticketsSold, String receipts)
+    {
 		System.out.print("Checking sales report format for performance ID " + perfID);
 		boolean failure = false;
 		String[] bits = report.split("\t");
@@ -168,19 +180,23 @@ public class CLI2 {
 			System.out.println("\n\tFAILURE Performance ID does not match in sales report {" + report + "} expected " + perfID);
 			failure=true;
 		}
-		if (!startTime.equals(bits[1])) {
+		if (!startTime.equals(bits[1]))
+		{
 			System.out.println("\n\tFAILURE Start time does not match in sales report {" + report + "} expected " + startTime);
 			failure=true;
 		}
-		if (!(ticketsSold+"").equals(bits[2])) {
+		if (!(ticketsSold+"").equals(bits[2]))
+		{
 			System.out.println("\n\tFAILURE Tickets sold does not match in sales report {" + report + "} expected " + ticketsSold);
 			failure=true;
 		}
-		if (!bits[3].startsWith(receipts)) { // Do it this way in case people don't add .00
+		if (!bits[3].startsWith(receipts))
+		{ // Do it this way in case people don't add .00
 			System.out.println("\n\tFAILUE receipts does not match in sales report {" + report + "} expected " + receipts);
 			failure=true;
 		}
-		if (!failure) {
+		if (!failure)
+		{
 			System.out.println(".....ok");
 		}
 	}

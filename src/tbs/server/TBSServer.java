@@ -88,7 +88,7 @@ public interface TBSServer {
 	 * 
 	 * <p><b>Marks: 1</b>
 	 */
-	List<String> getPeformanceIDsForAct(String actID);
+	List<String> getPerformanceIDsForAct(String actID);
 
 	/**
 	 * Request a list of the IDs for all tickets issued for the performance with the specified ID.

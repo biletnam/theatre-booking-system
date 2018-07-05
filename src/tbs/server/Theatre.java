@@ -26,8 +26,6 @@ public class Theatre extends UniqueItem
     }
 
     /**
-     * Request the string representation of the theatre.
-     *
      * @return A string representation of the theatre.
      */
     @Override
@@ -38,6 +36,10 @@ public class Theatre extends UniqueItem
                 + FLOOR_AREA + " square metres.";
     }
 
+    /**
+     * @return The number of rows in this theatre. Since all the theatres have a square seating configuration, this is
+     * also the number of columns.
+     */
     public int getNumRows()
     {
         return NUM_ROWS;

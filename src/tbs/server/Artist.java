@@ -44,11 +44,18 @@ public class Artist extends UniqueItem
         return "Artist " + getName() + " (ID: " + getID() + ")";
     }
 
+    /**
+     * @return A list of IDs of all the acts this artist is putting on.
+     */
     public List<String> getActIDs()
     {
         return acts.getIDs();
     }
 
+    /**
+     * Adds an act to the collection of acts this artist is putting on.
+     * @param act
+     */
     public void addAct(Act act)
     {
         acts.add(act);
